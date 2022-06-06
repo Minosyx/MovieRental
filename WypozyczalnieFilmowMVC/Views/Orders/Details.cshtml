@@ -1,0 +1,55 @@
+﻿@model Entities.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+    </dl>
+    <table>
+        @for (int item = 0; item < Model.Movies.Count; item++)
+        {
+            <tr>
+                <td>
+                    <img src=@ViewData.Model.Movies.ElementAt(item).Image class="thumbnail">
+                </td>
+                <td>
+                    @ViewData.Model.Movies.ElementAt(item).Title
+                </td>
+                <td>
+                    @ViewData.Model.Movies.ElementAt(item).Price
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Movies", new { id = Model.Movies.ElementAt(item).Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

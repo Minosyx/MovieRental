@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Add Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+<table class="roles">
+    <tr class="role-header">
+        <td colspan="2">
+            <h2>Create User Roles</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="tb-role">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="role">
+                            @item.Name
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td class="new-role">
+            <h3>@Html.ActionLink("Click to Create New Role", "Create", "Role")</h3>
+        </td>
+    </tr>
+</table>

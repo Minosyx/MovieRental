@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Entities.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+
+<h2>Orders:</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@foreach (var item in Model)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Order
+                </td>
+                <td>
+                    Price
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Order name: @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    Total: @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            @foreach (var movie in item.Movies)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
